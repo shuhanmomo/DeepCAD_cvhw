@@ -13,6 +13,17 @@ sys.path.append("..")
 from cadlib.extrude import CADSequence
 from cadlib.visualize import vec2CADsolid, create_CAD
 
+# Add OpenGL configuration
+os.environ["PYTHONOCC_SHUNT_GUI"] = "1"
+try:
+    from OCC.Display.backend import get_qt_modules
+    QtCore, QtGui, QtWidgets, QtOpenGL = get_qt_modules()
+    # Force software rendering
+    if hasattr(QtCore, 'Qt'):
+        QtCore.Qt.AA_UseDesktopOpenGL = 0
+        QtCore.Qt.AA_UseSoftwareOpenGL = 1
+except:
+    pass
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--src', type=str, required=True, help="source folder")

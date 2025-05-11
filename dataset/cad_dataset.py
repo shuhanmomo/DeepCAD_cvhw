@@ -22,7 +22,7 @@ class CADDataset(Dataset):
         self.raw_data = os.path.join(config.data_root, "cad_vec") # h5 data root
         self.phase = phase
         self.aug = config.augment
-        self.path = os.path.join(config.data_root, "train_val_test_split.json")
+        self.path = os.path.join(config.data_root, "subset_split.json")
         with open(self.path, "r") as fp:
             self.all_data = json.load(fp)[phase]
 

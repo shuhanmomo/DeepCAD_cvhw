@@ -10,7 +10,7 @@ from cadlib.macro import *
 
 DATA_ROOT = "../data"
 RAW_DATA = os.path.join(DATA_ROOT, "cad_json")
-RECORD_FILE = os.path.join(DATA_ROOT, "train_val_test_split.json")
+RECORD_FILE = os.path.join(DATA_ROOT, "subset_split.json")
 
 SAVE_DIR = os.path.join(DATA_ROOT, "cad_vec")
 print(SAVE_DIR)

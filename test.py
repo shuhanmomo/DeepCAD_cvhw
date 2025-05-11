@@ -78,7 +78,9 @@ def encode(cfg):
     save_path = os.path.join(save_dir, 'all_zs_ckpt{}.h5'.format(cfg.ckpt))
     fp = h5py.File(save_path, 'w')
     for phase in ['train', 'validation', 'test']:
+        print("Creating dataloader for phase:", phase)
         train_loader = get_dataloader(phase, cfg, shuffle=False)
+        print("Dataloader created, length:", len(train_loader))
 
         # encode
         all_zs = []

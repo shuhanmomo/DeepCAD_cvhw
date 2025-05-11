@@ -14,16 +14,17 @@ from cadlib.visualize import CADsolid2pc, create_CAD
 from utils.pc_utils import write_ply, read_ply
 
 DATA_ROOT = "../data"
-RAW_DATA = os.path.join(DATA_ROOT, "cad_json")
-RECORD_FILE = os.path.join(DATA_ROOT, "train_val_test_split.json")
+RAW_DATA = DATA_ROOT + "/cad_json"
+RECORD_FILE = DATA_ROOT + "/train_val_test_split.json"
 
 N_POINTS = 8096 # 4096
 WRITE_NORMAL = False
-SAVE_DIR = os.path.join(DATA_ROOT, "pc_cad")
+SAVE_DIR = DATA_ROOT + "/pc_cad"
 if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
 INVALID_IDS = []
+# print(os.path.exists())
 
 
 def process_one(data_id):
@@ -31,13 +32,13 @@ def process_one(data_id):
         print("skip {}: in invalid id list".format(data_id))
         return
 
-    save_path = os.path.join(SAVE_DIR, data_id + ".ply")
+    save_path = SAVE_DIR + "/" + data_id + ".ply"
     # if os.path.exists(save_path):
     #     print("skip {}: file already exists".format(data_id))
     #     return
 
     # print("[processing] {}".format(data_id))
-    json_path = os.path.join(RAW_DATA, data_id + ".json")
+    json_path = RAW_DATA + "/" + data_id + ".json"
     with open(json_path, "r") as fp:
         data = json.load(fp)
 
@@ -55,7 +56,7 @@ def process_one(data_id):
         print("convert point cloud failed:", data_id)
         return None
 
-    save_path = os.path.join(SAVE_DIR, data_id + ".ply")
+    save_path = SAVE_DIR + "/" + data_id + ".ply"
     truck_dir = os.path.dirname(save_path)
     if not os.path.exists(truck_dir):
         os.makedirs(truck_dir)
